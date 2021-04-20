@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/main.html">
+<div layout:fragment="main_section">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-sm-6 offset-3">
+        <form th:action="@{'/additem'}" method="post">
+          <div class="form-group">
+            <label th:text="#{item.name}"> </label>
+            <input type="text" class="form-control" name="name">
+          </div>
+          <div class="form-group">
+            <label th:text="#{item.price}"> </label>
+            <input type="text" class="form-control" name="price">
+          </div>
+          <div class="form-group">
+            <label th:text="#{item.amount}"> </label>
+            <input type="text" class="form-control" name="amount">
+          </div>
+          <div class="form-group">
+            <label th:text="#{item.description}"> </label>
+            <input type="text" class="form-control" name="description">
+          </div>
+          <div class="form-group mt-2">
+            <button class="btn btn-success" th:text="#{button.add}"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+          <th th:text="#{item.id}"></th>
+          <th th:text="#{item.name}"></th>
+          <th th:text="#{item.price}"></th>
+          <th th:text="#{item.amount}"></th>
+          <th th:text="#{item.description}"></th>
+          <th th:text="#{item.detail}"></th>
+          </thead>
+          <tbody>
+          <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.amount}"></td>
+            <td th:text="${item.description}"></td>
+            <td>
+              <a th:href="@{'/itemdatails/' + ${item.id}}" class="btn btn-info btn-sm" th:text="#{button.details}"></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
